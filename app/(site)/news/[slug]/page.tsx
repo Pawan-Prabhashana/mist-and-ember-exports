@@ -1,75 +1,19 @@
 import type { Metadata } from "next";
-import { compileMDX } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import fs from "node:fs";
 import path from "node:path";
-
-// Optional: map some common MDX elements to styled components
-const MDXComponents = {
-  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2
-      {...props}
-      className={[
-        "font-serif text-2xl md:text-3xl font-semibold mt-12 mb-4",
-        props.className || "",
-      ].join(" ")}
-    />
-  ),
-  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3
-      {...props}
-      className={[
-        "font-serif text-xl md:text-2xl font-semibold mt-10 mb-3",
-        props.className || "",
-      ].join(" ")}
-    />
-  ),
-  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p
-      {...props}
-      className={["text-[#4B5A56] leading-relaxed my-4", props.className || ""].join(" ")}
-    />
-  ),
-  ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul
-      {...props}
-      className={["list-disc pl-6 my-4 space-y-2 text-[#4B5A56]", props.className || ""].join(
-        " "
-      )}
-    />
-  ),
-  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-    <a
-      {...props}
-      className={[
-        "underline decoration-[#C4A36A]/70 underline-offset-2 hover:text-[#B07C4F] transition",
-        props.className || "",
-      ].join(" ")}
-      target={props.target || "_blank"}
-      rel={props.rel || "noreferrer"}
-    />
-  ),
-  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // For MDX inline images (fallback). Prefer Next <Image> in content when possible.
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      {...props}
-      className={[
-        "rounded-xl my-6 shadow-md border border-[#E7E3DE]",
-        props.className || "",
-      ].join(" ")}
-      alt={props.alt || ""}
-    />
-  ),
-};
+import matter from "gray-matter";
+import ReactMarkdown from "react-markdown";
 
 type Frontmatter = {
-  title: string;
+  title?: string;
   excerpt?: string;
-  date?: string; // ISO date string
-  coverImage?: string; // e.g., /images/hero/hero-tea-3840x2160.jpg
+  description?: string;
+  date?: string;
+  coverImage?: string;
+  cover?: string;
   tags?: string[];
   author?: string;
 };
@@ -80,23 +24,19 @@ function getAllNewsSlugs(): string[] {
   if (!fs.existsSync(NEWS_DIR)) return [];
   return fs
     .readdirSync(NEWS_DIR)
-    .filter((f) => f.endsWith(".mdx"))
-    .map((f) => f.replace(/\.mdx$/, ""));
+    .filter((f) => f.endsWith(".mdx") || f.endsWith(".md"))
+    .map((f) => f.replace(/\.(mdx|md)$/, ""));
 }
 
-async function getArticle(slug: string) {
-  const filePath = path.join(NEWS_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return null;
+function getArticle(slug: string) {
+  const mdxPath = path.join(NEWS_DIR, `${slug}.mdx`);
+  const mdPath = path.join(NEWS_DIR, `${slug}.md`);
+  const filePath = fs.existsSync(mdxPath) ? mdxPath : fs.existsSync(mdPath) ? mdPath : null;
+  if (!filePath) return null;
 
   const source = fs.readFileSync(filePath, "utf8");
-
-  const { content, frontmatter } = await compileMDX<Frontmatter>({
-    source,
-    components: MDXComponents,
-    options: {
-      parseFrontmatter: true,
-    },
-  });
+  const { content, data } = matter(source);
+  const frontmatter = data as Frontmatter;
 
   return {
     slug,
@@ -104,6 +44,40 @@ async function getArticle(slug: string) {
     frontmatter,
   };
 }
+
+const markdownComponents = {
+  h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h2 className="font-serif text-2xl md:text-3xl font-semibold mt-12 mb-4" {...props}>
+      {children}
+    </h2>
+  ),
+  h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3 className="font-serif text-xl md:text-2xl font-semibold mt-10 mb-3" {...props}>
+      {children}
+    </h3>
+  ),
+  p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
+    <p className="text-[#4B5A56] leading-relaxed my-4" {...props}>
+      {children}
+    </p>
+  ),
+  ul: ({ children, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
+    <ul className="list-disc pl-6 my-4 space-y-2 text-[#4B5A56]" {...props}>
+      {children}
+    </ul>
+  ),
+  a: ({ href, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+    <a
+      href={href}
+      className="underline decoration-[#C4A36A]/70 underline-offset-2 hover:text-[#B07C4F] transition"
+      target="_blank"
+      rel="noreferrer"
+      {...props}
+    >
+      {children}
+    </a>
+  ),
+};
 
 export async function generateStaticParams() {
   return getAllNewsSlugs().map((slug) => ({ slug }));
@@ -118,14 +92,15 @@ export async function generateMetadata({
   if (!article) return {};
 
   const { frontmatter } = article;
-  const title = frontmatter.title
-    ? `${frontmatter.title} — Mist & Ember Exports`
+  const fm = frontmatter || {};
+  const title = fm.title
+    ? `${fm.title} — Mist & Ember Exports`
     : "News — Mist & Ember Exports";
   const description =
-    frontmatter.excerpt ||
+    (fm.excerpt ?? fm.description) ||
     "Latest stories and updates from Mist & Ember Exports: Sri Lankan tea, cinnamon, coconut, and more.";
   const ogImage =
-    frontmatter.coverImage || "/og/og-home.jpg";
+    (fm.coverImage ?? fm.cover) || "/og/og-home.jpg";
 
   return {
     title,
@@ -157,7 +132,13 @@ export default async function NewsArticlePage({
   }
 
   const { content, frontmatter } = article;
-  const { title, excerpt, date, coverImage, tags = [], author } = frontmatter || {};
+  const fm = frontmatter || {};
+  const title = fm.title;
+  const excerpt = fm.excerpt ?? fm.description;
+  const date = fm.date;
+  const coverImage = fm.coverImage ?? fm.cover;
+  const tags = fm.tags ?? [];
+  const author = fm.author;
 
   // Format date (fallback to raw if invalid)
   let prettyDate = date;
@@ -235,7 +216,7 @@ export default async function NewsArticlePage({
       <section className="px-6 md:px-12 lg:px-20 py-10 md:py-16">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_260px]">
           <article className="prose max-w-none prose-headings:font-serif prose-p:text-[#4B5A56] prose-li:text-[#4B5A56] prose-img:rounded-xl prose-img:shadow-md">
-            {content}
+            <ReactMarkdown components={markdownComponents}>{content}</ReactMarkdown>
           </article>
 
           {/* Sidebar */}
