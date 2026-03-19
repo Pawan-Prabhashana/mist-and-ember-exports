@@ -1,6 +1,7 @@
 // /components/layout/footer.tsx
 import Image from "next/image";
 import Link from "next/link";
+import { Instagram, Linkedin, Facebook } from "lucide-react";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -37,8 +38,7 @@ export default function Footer() {
               aria-label="Instagram"
               className="rounded-full p-2 hover:bg-white/10 transition"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/icons/social/instagram.svg" alt="" className="h-5 w-5 opacity-90" />
+              <Instagram className="h-5 w-5 opacity-90" />
             </a>
             <a
               href="https://www.linkedin.com/"
@@ -47,8 +47,7 @@ export default function Footer() {
               aria-label="LinkedIn"
               className="rounded-full p-2 hover:bg-white/10 transition"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/icons/social/linkedin.svg" alt="" className="h-5 w-5 opacity-90" />
+              <Linkedin className="h-5 w-5 opacity-90" />
             </a>
             <a
               href="https://www.facebook.com/"
@@ -57,8 +56,7 @@ export default function Footer() {
               aria-label="Facebook"
               className="rounded-full p-2 hover:bg-white/10 transition"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/icons/social/facebook.svg" alt="" className="h-5 w-5 opacity-90" />
+              <Facebook className="h-5 w-5 opacity-90" />
             </a>
           </div>
         </div>

@@ -86,6 +86,9 @@ tsconfig.tsbuildinfo
 Thumbs.db
 ehthumbs.db
 Icon?
+# Exception: our app icons (Icon? matches "icons" on case-insensitive FS)
+!public/icons/
+!public/icons/*
 Desktop.ini
 $RECYCLE.BIN/
 *.lnk
