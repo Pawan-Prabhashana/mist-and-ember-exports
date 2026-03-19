@@ -81,7 +81,7 @@ export default function AboutPage() {
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/factory/facility-exterior.jpg"
+            src="/images/factory/facility-exterior.jpg?v=2"
             alt="Galpadithanne tea factory (KDU)"
             width={800}
             height={600}

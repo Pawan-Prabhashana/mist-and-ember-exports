@@ -60,7 +60,7 @@ export default function QualityPage() {
         <div className="absolute inset-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/factory/lab.jpg"
+            src="/images/factory/lab.jpg?v=2"
             alt="Quality laboratory"
             className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
@@ -130,7 +130,7 @@ export default function QualityPage() {
               <div className="relative h-56 w-full">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/factory/lab.jpg"
+                  src="/images/factory/lab.jpg?v=2"
                   alt="Quality lab"
                   className="absolute inset-0 w-full h-full object-cover"
                 />

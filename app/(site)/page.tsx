@@ -140,7 +140,7 @@ export default function HomePage() {
             <div className="relative h-80 md:h-[480px] w-full overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(8,51,53,0.08)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/factory/facility-exterior.jpg"
+              src="/images/factory/facility-exterior.jpg?v=2"
               alt="Galpadithanne tea factory (KDU)"
               className="absolute inset-0 w-full h-full object-cover"
               loading="eager"
@@ -208,7 +208,7 @@ export default function HomePage() {
             <div className="relative h-80 md:h-[420px] w-full overflow-hidden rounded-2xl shadow-lg">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/factory/lab.jpg"
+              src="/images/factory/lab.jpg?v=2"
               alt="Quality laboratory"
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
