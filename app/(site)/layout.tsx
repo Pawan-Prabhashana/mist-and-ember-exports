@@ -154,18 +154,26 @@ function Footer() {
             <li>Colombo, Sri Lanka</li>
             <li>
               <a
-                href="mailto:hello@mistandember.com"
+                href="mailto:hello@mistandemberexports.com"
                 className="transition hover:text-[#C4A36A] underline underline-offset-2"
               >
-                hello@mistandember.com
+                hello@mistandemberexports.com
               </a>
             </li>
             <li>
               <a
-                href="tel:+94700000000"
+                href="tel:+94718159949"
                 className="transition hover:text-[#C4A36A] underline underline-offset-2"
               >
-                +94 70 000 0000
+                +94 71 815 9949
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+94703203060"
+                className="transition hover:text-[#C4A36A] underline underline-offset-2"
+              >
+                +94 70 320 3060
               </a>
             </li>
           </ul>
@@ -179,11 +187,11 @@ function Footer() {
           <p>
             Built with ❤️ in Sri Lanka ·{" "}
             <Link
-              href="https://www.mistandember.com"
+              href="https://www.mistandemberexports.com"
               className="underline decoration-[#C4A36A]/70 underline-offset-2"
               target="_blank"
             >
-              www.mistandember.com
+              www.mistandemberexports.com
             </Link>
           </p>
         </div>

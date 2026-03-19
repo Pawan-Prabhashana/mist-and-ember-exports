@@ -337,17 +337,17 @@ export default function ContactPage() {
                 <div>
                   <dt className="font-medium text-[#083335]">Email</dt>
                   <dd>
-                    <a className="underline hover:no-underline" href="mailto:hello@mistandember.com">
-                      hello@mistandember.com
+                    <a className="underline hover:no-underline" href="mailto:hello@mistandemberexports.com">
+                      hello@mistandemberexports.com
                     </a>
                   </dd>
                 </div>
                 <div>
                   <dt className="font-medium text-[#083335]">Phone</dt>
                   <dd>
-                    <a className="underline hover:no-underline" href="tel:+94700000000">
-                      +94 70 000 0000
-                    </a>
+                    <a className="underline hover:no-underline" href="tel:+94718159949">+94 71 815 9949</a>
+                    {" · "}
+                    <a className="underline hover:no-underline" href="tel:+94703203060">+94 70 320 3060</a>
                   </dd>
                 </div>
                 <div>

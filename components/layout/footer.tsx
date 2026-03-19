@@ -126,13 +126,18 @@ export default function Footer() {
           <ul className="space-y-1 text-sm text-[#E7E3DE]">
             <li>Colombo, Sri Lanka</li>
             <li>
-              <a href="mailto:hello@mistandember.com" className="underline hover:no-underline">
-                hello@mistandember.com
+              <a href="mailto:hello@mistandemberexports.com" className="underline hover:no-underline">
+                hello@mistandemberexports.com
               </a>
             </li>
             <li>
-              <a href="tel:+94700000000" className="underline hover:no-underline">
-                +94 70 000 0000
+              <a href="tel:+94718159949" className="underline hover:no-underline">
+                +94 71 815 9949
+              </a>
+            </li>
+            <li>
+              <a href="tel:+94703203060" className="underline hover:no-underline">
+                +94 70 320 3060
               </a>
             </li>
           </ul>
@@ -155,11 +160,11 @@ export default function Footer() {
           <p className="text-center sm:text-right">
             Built with ❤️ in Sri Lanka ·{" "}
             <Link
-              href="https://www.mistandember.com"
+              href="https://www.mistandemberexports.com"
               className="underline decoration-[#C4A36A]/70 underline-offset-2"
               target="_blank"
             >
-              www.mistandember.com
+              www.mistandemberexports.com
             </Link>
           </p>
         </div>

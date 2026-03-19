@@ -140,7 +140,7 @@ export default function HomePage() {
             <div className="relative h-80 md:h-[480px] w-full overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(8,51,53,0.08)]">
             <Image
               src="/images/factory/facility-exterior.jpg"
-              alt="Mist & Ember Exports facility"
+              alt="Galpadithanne tea factory (KDU)"
               fill
               className="object-cover"
               priority
@@ -223,7 +223,7 @@ export default function HomePage() {
             <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-wide text-[#083335]">Global Reach</h2>
             <div className="mx-auto mt-4 h-px w-16 bg-[#C4A36A]/60" />
             <p className="mt-4 text-[#4B5A56] max-w-2xl mx-auto">
-              We proudly export Sri Lankan excellence to 20+ countries.
+              We proudly export Sri Lankan excellence to 20+ countries — connecting Asia, Europe, and the Middle East through sustainable trade partnerships.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
