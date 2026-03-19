@@ -138,12 +138,12 @@ export default function HomePage() {
         <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-12 lg:px-20 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
           <ScrollReveal>
             <div className="relative h-80 md:h-[480px] w-full overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(8,51,53,0.08)]">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/factory/facility-exterior.jpg"
               alt="Galpadithanne tea factory (KDU)"
-              fill
-              className="object-cover"
-              priority
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
             />
             </div>
           </ScrollReveal>
@@ -206,7 +206,13 @@ export default function HomePage() {
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
             <div className="relative h-80 md:h-[420px] w-full overflow-hidden rounded-2xl shadow-lg">
-            <Image src="/images/factory/lab.jpg" alt="Quality laboratory" fill className="object-cover" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/factory/lab.jpg"
+              alt="Quality laboratory"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+            />
             </div>
           </ScrollReveal>
         </div>

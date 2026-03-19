@@ -79,10 +79,10 @@ export default function AboutPage() {
       {/* Heritage Section */}
       <section className="px-6 md:px-16 py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
-          <SmartImg
-            base="/images/factory/facility-exterior"
-            alt="Our Facility"
-            fallback="/images/placeholders/placeholder-4x3.png"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/factory/facility-exterior.jpg"
+            alt="Galpadithanne tea factory (KDU)"
             width={800}
             height={600}
             className="rounded-2xl shadow-lg w-full h-auto object-cover"

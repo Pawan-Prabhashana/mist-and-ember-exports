@@ -58,13 +58,12 @@ export default function QualityPage() {
       {/* Hero — full-width with lab/quality image */}
       <section className="relative min-h-[60vh] flex flex-col justify-end overflow-hidden">
         <div className="absolute inset-0">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/factory/lab.jpg"
             alt="Quality laboratory"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#083335]/95 via-[#083335]/60 to-[#083335]/40" />
         </div>
@@ -129,12 +128,11 @@ export default function QualityPage() {
           <aside className="space-y-6">
             <div className="overflow-hidden rounded-2xl border border-[#E7E3DE] bg-white shadow-sm">
               <div className="relative h-56 w-full">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/factory/lab.jpg"
                   alt="Quality lab"
-                  fill
-                  sizes="(min-width: 1024px) 720px, (min-width: 768px) 640px, 100vw"
-                  className="object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
