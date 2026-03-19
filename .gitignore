@@ -89,6 +89,7 @@ Icon?
 # Exception: our app icons (Icon? matches "icons" on case-insensitive FS)
 !public/icons/
 !public/icons/*
+public/icons/.DS_Store
 Desktop.ini
 $RECYCLE.BIN/
 *.lnk
