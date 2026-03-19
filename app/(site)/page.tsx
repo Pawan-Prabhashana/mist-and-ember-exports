@@ -215,7 +215,7 @@ export default function HomePage() {
       {/* Section divider */}
       <div className="h-px bg-gradient-to-r from-transparent via-[#C4A36A]/40 to-transparent" />
 
-      {/* ─────────────── Global Reach + CTA ─────────────── */}
+      {/* ─────────────── Global Reach ─────────────── */}
       <section className="relative px-6 md:px-12 lg:px-20 py-16 md:py-24 bg-white overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #083335 1px, transparent 0)", backgroundSize: "36px 36px" }} />
         <div className="relative z-10 mx-auto max-w-6xl text-center">
@@ -223,15 +223,14 @@ export default function HomePage() {
             <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-wide text-[#083335]">Global Reach</h2>
             <div className="mx-auto mt-4 h-px w-16 bg-[#C4A36A]/60" />
             <p className="mt-4 text-[#4B5A56] max-w-2xl mx-auto">
-              We proudly export Sri Lankan excellence to 20+ countries — connecting Asia, Europe,
-              and the Middle East through sustainable trade partnerships.
+              We proudly export Sri Lankan excellence to 20+ countries.
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <div className="mt-10 flex justify-center">
               <Image
-                src="/images/hero/hero-coconut-3840x2160.jpg"
-                alt="Global network"
+                src="/images/global/map.png"
+                alt="Global export destinations"
                 width={1200}
                 height={600}
                 className="rounded-2xl object-cover shadow-[0_8px_30px_rgba(8,51,53,0.08)] max-h-[400px]"
