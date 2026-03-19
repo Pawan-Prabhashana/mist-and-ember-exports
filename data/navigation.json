@@ -1,0 +1,138 @@
+{
+  "main": [
+    {
+      "title": "Home",
+      "href": "/"
+    },
+    {
+      "title": "About Us",
+      "href": "/about",
+      "description": "Discover our heritage and the story behind Mist & Ember Exports."
+    },
+    {
+      "title": "Our Teas",
+      "href": "/products",
+      "children": [
+        {
+          "title": "Black Tea",
+          "href": "/products/black-tea",
+          "description": "Rich, full-bodied teas sourced from Sri Lanka’s highlands."
+        },
+        {
+          "title": "Green Tea",
+          "href": "/products/green-tea",
+          "description": "Fresh and vibrant green teas with authentic Ceylon aroma."
+        },
+        {
+          "title": "Herbal & Infusions",
+          "href": "/products/herbal",
+          "description": "Naturally caffeine-free blends crafted by our experts."
+        },
+        {
+          "title": "Private Label",
+          "href": "/private-label",
+          "description": "Build your own tea brand with our world-class packaging and expertise."
+        }
+      ]
+    },
+    {
+      "title": "Certifications",
+      "href": "/certifications",
+      "description": "Our international quality and safety standards."
+    },
+    {
+      "title": "Sustainability",
+      "href": "/sustainability",
+      "description": "Our commitment to the planet, people, and ethical sourcing."
+    },
+    {
+      "title": "Gallery",
+      "href": "/gallery",
+      "description": "A glimpse into our plantations, production, and events."
+    },
+    {
+      "title": "Contact",
+      "href": "/contact",
+      "description": "Get in touch with the Mist & Ember Exports team."
+    }
+  ],
+
+  "footer": {
+    "about": {
+      "title": "Mist & Ember Exports",
+      "text": "A premium tea exporting company dedicated to preserving Sri Lanka’s tea heritage. We craft authentic, sustainable, and ethically sourced teas for global markets."
+    },
+    "quickLinks": [
+      {
+        "title": "Home",
+        "href": "/"
+      },
+      {
+        "title": "About Us",
+        "href": "/about"
+      },
+      {
+        "title": "Our Teas",
+        "href": "/products"
+      },
+      {
+        "title": "Certifications",
+        "href": "/certifications"
+      },
+      {
+        "title": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "explore": [
+      {
+        "title": "Private Label Solutions",
+        "href": "/private-label"
+      },
+      {
+        "title": "Sustainability",
+        "href": "/sustainability"
+      },
+      {
+        "title": "Gallery",
+        "href": "/gallery"
+      },
+      {
+        "title": "Blog",
+        "href": "/blog"
+      }
+    ],
+    "contact": {
+      "address": "No. 214, Kaduwela Road, Battaramulla, Sri Lanka",
+      "phone": "+94 11 456 7890",
+      "email": "info@mistandember.com",
+      "social": [
+        {
+          "platform": "Facebook",
+          "icon": "Facebook",
+          "href": "https://facebook.com/mistandemberexports"
+        },
+        {
+          "platform": "Instagram",
+          "icon": "Instagram",
+          "href": "https://instagram.com/mistandemberexports"
+        },
+        {
+          "platform": "LinkedIn",
+          "icon": "Linkedin",
+          "href": "https://linkedin.com/company/mistandemberexports"
+        }
+      ]
+    },
+    "legal": [
+      {
+        "title": "Privacy Policy",
+        "href": "/privacy-policy"
+      },
+      {
+        "title": "Terms & Conditions",
+        "href": "/terms"
+      }
+    ]
+  }
+}

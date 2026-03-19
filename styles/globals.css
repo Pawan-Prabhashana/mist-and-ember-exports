@@ -1,0 +1,244 @@
+/* ----------------------------------------------------
+   🌿 Ceylon Roots — Global Stylesheet
+   ----------------------------------------------------
+   Purpose:
+   - Define base global resets
+   - Apply brand fonts & colors
+   - Enable dark/light theme support
+   - Set consistent animations & transitions
+   - Integrate Tailwind layers (base, components, utilities)
+   ---------------------------------------------------- */
+
+/* Tailwind layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import custom fonts */
+@import "./fonts.css";
+
+/* ----------------------------------------------------
+   Base Reset & Defaults
+---------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  font-family: var(--font-body);
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--color-text, #1a1a1a);
+  background-color: var(--color-bg, #ffffff);
+  line-height: var(--font-base-lineheight);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ----------------------------------------------------
+   Theme Colors (Light & Dark)
+---------------------------------------------------- */
+
+:root {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f5f5;
+  --color-text: #1a1a1a;
+  --color-heading: #0f0f0f;
+  --color-accent: #3a7c59; /* Ceylon green tone */
+  --color-amber: #c4a36a; /* Warm tea/amber accent */
+  --color-border: #e0e0e0;
+
+  /* Shadows & Radii */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-elegant: 0 8px 30px rgba(8, 51, 53, 0.08);
+  --shadow-hover: 0 12px 40px rgba(8, 51, 53, 0.12);
+  --radius-lg: 1.25rem;
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+  --color-bg: #0c0c0c;
+  --color-bg-alt: #111;
+  --color-text: #eaeaea;
+  --color-heading: #ffffff;
+  --color-accent: #8ed19a; /* lighter Ceylon green in dark mode */
+  --color-border: #333;
+}
+
+/* ----------------------------------------------------
+   Typography
+---------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: var(--font-tight-lineheight);
+  color: var(--color-heading);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+}
+h2 {
+  font-size: clamp(1.875rem, 3.5vw, 3rem);
+}
+h3 {
+  font-size: clamp(1.5rem, 2.75vw, 2.25rem);
+}
+p {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+/* Links */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: #276b46;
+}
+
+/* ----------------------------------------------------
+   Layout & Containers
+---------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+section {
+  padding-block: 5rem;
+}
+
+/* ----------------------------------------------------
+   Buttons & UI Elements
+---------------------------------------------------- */
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+.btn-primary:hover {
+  background-color: #2e6748;
+}
+
+.btn-outline {
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+}
+.btn-outline:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+/* ----------------------------------------------------
+   Scrollbars
+---------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border-radius: 20px;
+}
+
+/* ----------------------------------------------------
+   Animations & Transitions
+---------------------------------------------------- */
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scale-hover {
+  transition: transform 0.3s ease;
+}
+.scale-hover:hover {
+  transform: scale(1.03);
+}
+
+/* ----------------------------------------------------
+   Utility & Branding
+---------------------------------------------------- */
+
+.text-gradient {
+  background: linear-gradient(90deg, #3a7c59, #74b886);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-text {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-heading);
+}
+
+/* ----------------------------------------------------
+   Selection & Focus Styles
+---------------------------------------------------- */
+
+::selection {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "private-label",
+    "title": "Private Label Solutions",
+    "icon": "PackageCheck",
+    "image": "/images/services/private-label.jpg",
+    "description": "We specialize in private label tea production for global brands. Our experts handle everything from blending, design, packaging, and labeling to ensure your product stands out internationally.",
+    "features": [
+      "Custom tea blends tailored to your market",
+      "Flexible packaging options — from luxury tins to eco pouches",
+      "Full branding support including label design and printing",
+      "End-to-end export documentation and logistics"
+    ]
+  },
+  {
+    "id": "bulk-export",
+    "title": "Bulk Tea Export",
+    "icon": "Ship",
+    "image": "/images/services/bulk-export.jpg",
+    "description": "Mist & Ember Exports supplies premium bulk tea to distributors, importers, and wholesalers around the world. Every shipment is inspected to meet the highest export standards of Sri Lanka.",
+    "features": [
+      "Bulk quantities of Ceylon black, green, and herbal teas",
+      "Consistent grading and flavor profiling",
+      "International packaging compliance and traceability",
+      "Competitive global logistics network"
+    ]
+  },
+  {
+    "id": "custom-blending",
+    "title": "Custom Blending & Formulation",
+    "icon": "Beaker",
+    "image": "/images/services/custom-blending.jpg",
+    "description": "Our master tea blenders craft unique blends that cater to diverse palates and preferences, combining the artistry of traditional Ceylon tea with modern innovation.",
+    "features": [
+      "Expert blending and sensory evaluation",
+      "Infusions with herbs, fruits, or flowers",
+      "Flavor customization for target markets",
+      "Strict quality and food safety assurance (ISO 22000 & HACCP)"
+    ]
+  },
+  {
+    "id": "packaging-design",
+    "title": "Packaging & Branding",
+    "icon": "Box",
+    "image": "/images/services/packaging-design.jpg",
+    "description": "We provide innovative packaging design and labeling solutions to complement your brand identity, maintaining both visual appeal and international compliance.",
+    "features": [
+      "Eco-friendly and luxury packaging choices",
+      "Full-color printing and design customization",
+      "Compliance with FDA and EU labeling standards",
+      "In-house creative design and prepress services"
+    ]
+  },
+  {
+    "id": "tea-sourcing",
+    "title": "Tea Sourcing & Selection",
+    "icon": "Leaf",
+    "image": "/images/services/tea-sourcing.jpg",
+    "description": "We handpick teas from Sri Lanka’s best plantations, maintaining relationships with ethical growers to guarantee freshness, quality, and sustainability.",
+    "features": [
+      "Direct sourcing from top Ceylon estates",
+      "Sustainably farmed and ozone-friendly teas",
+      "Lot tracking and full transparency from leaf to cup",
+      "Procurement certified under Lion Logo and GMP standards"
+    ]
+  },
+  {
+    "id": "sustainability",
+    "title": "Sustainability & Community Development",
+    "icon": "Earth",
+    "image": "/images/services/sustainability.jpg",
+    "description": "Sustainability is central to our operations — from eco-friendly packaging to reforestation and community welfare initiatives that empower Sri Lankan tea growers.",
+    "features": [
+      "Plastic-free, recyclable, and compostable materials",
+      "Energy-efficient production facilities",
+      "Reforestation and carbon offset programs",
+      "Community training and fair trade practices"
+    ]
+  }
+]

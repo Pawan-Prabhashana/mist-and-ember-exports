@@ -1,0 +1,201 @@
+# -----------------------------------------------------
+# 🌿 Ceylon Roots — Git Ignore Rules
+# -----------------------------------------------------
+# Purpose:
+#   Prevent build artifacts, environment files, and
+#   editor/system-specific files from being committed.
+# -----------------------------------------------------
+
+# -----------------------------------------------------
+# 🚫 Node & Dependencies
+# -----------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+.pnpm-store/
+.vscode-test/
+
+# -----------------------------------------------------
+# ⚙️ Build & Output
+# -----------------------------------------------------
+.next/
+out/
+dist/
+build/
+.cache/
+tmp/
+temp/
+
+# Generated images (OG, optimized, etc.)
+public/optimized/
+public/og/
+
+# -----------------------------------------------------
+# 🌐 Environment Variables
+# -----------------------------------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.backup
+.env.backup
+.envrc
+!.env.local.example
+
+# -----------------------------------------------------
+# 🧰 IDE & Editor Files
+# -----------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.swm
+*.bak
+*.tmp
+*.orig
+
+# -----------------------------------------------------
+# 🧾 Logs & Reports
+# -----------------------------------------------------
+logs/
+*.log
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+coverage/
+*.lcov
+
+# -----------------------------------------------------
+# 🧠 TypeScript
+# -----------------------------------------------------
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# -----------------------------------------------------
+# 🧱 OS / System Files
+# -----------------------------------------------------
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# -----------------------------------------------------
+# 🧩 Testing / Temp
+# -----------------------------------------------------
+jest-cache/
+jest-results/
+coverage/
+playwright-report/
+test-output/
+.cypress/
+*.spec.ts.snap
+*.spec.tsx.snap
+
+# -----------------------------------------------------
+# 🧑‍💻 Misc Development
+# -----------------------------------------------------
+*.local
+*.log
+*.pid
+*.seed
+*.pid.lock
+*.tgz
+*.gz
+*.zip
+*.tar
+*.rar
+
+# -----------------------------------------------------
+# 🖼️ Design / Media Exports
+# -----------------------------------------------------
+*.psd
+*.ai
+*.xcf
+*.sketch
+*.fig
+*.blend
+
+# -----------------------------------------------------
+# 🔐 Private & Keys
+# -----------------------------------------------------
+*.pem
+*.key
+*.crt
+*.p12
+*.csr
+*.cer
+*.cert
+*.keystore
+*.jks
+
+# -----------------------------------------------------
+# 🐳 Docker / CI Artifacts
+# -----------------------------------------------------
+.docker/
+docker-compose.override.yml
+docker-compose.dev.yml
+docker-compose.prod.yml
+*.log
+*.pid
+coverage-final.json
+
+# -----------------------------------------------------
+# 📦 Package Managers (Lockfiles)
+# -----------------------------------------------------
+# (Uncomment one lockfile policy if needed)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# -----------------------------------------------------
+# 🧩 Custom Project Scripts
+# -----------------------------------------------------
+scripts/generated/
+scripts/tmp/
+scripts/cache/
+
+# -----------------------------------------------------
+# 🔍 Local Analytics / Tracking
+# -----------------------------------------------------
+.vercel/
+.netlify/
+firebase-debug.log
+firebase.json.backup
+functions/lib/
+functions/node_modules/
+functions/.cache/
+
+# -----------------------------------------------------
+# ✨ Editor backups / misc configs
+# -----------------------------------------------------
+*.sublime-project
+*.sublime-workspace
+*.sublime-settings
+*.code-workspace
+*.history/
+.history/
+*.orig
+*.rej
+
+# -----------------------------------------------------
+# ✅ Keep tracked examples / configs
+# -----------------------------------------------------
+!.env.local.example
+!.editorconfig
+!.gitignore
+!.prettierrc
+!.eslint*
+!.nvmrc
+!.npmrc
+!.env.schema

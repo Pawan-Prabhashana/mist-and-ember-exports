@@ -1,0 +1,12 @@
+# -----------------------------------------------------
+# 🌿 Ceylon Roots — Node Version Manager (NVM) Config
+# -----------------------------------------------------
+# Defines the Node.js version used across development,
+# production builds, and CI pipelines.
+# -----------------------------------------------------
+
+# Recommended stable LTS version for 2025
+lts/hydrogen
+
+# Example resolved version (if you prefer exact):
+# 20.11.1

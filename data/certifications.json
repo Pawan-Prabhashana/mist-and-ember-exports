@@ -1,0 +1,47 @@
+[
+  {
+    "id": "lion-logo",
+    "title": "Ceylon Tea Lion Logo – Symbol of Quality",
+    "issuer": "Sri Lanka Tea Board",
+    "year": 2024,
+    "description": "The Lion Logo is the symbol of 100% pure Ceylon Tea. This certification confirms that every tea pack under Mist & Ember Exports is grown, manufactured, and packed entirely in Sri Lanka, maintaining the highest purity and authenticity.",
+    "image": "/images/certifications/lion-logo.png",
+    "category": "Authenticity"
+  },
+  {
+    "id": "ozone-friendly",
+    "title": "Ozone Friendly Pure Ceylon Tea",
+    "issuer": "Sri Lanka Tea Board – Ozone Friendly Programme",
+    "year": 2024,
+    "description": "Mist & Ember Exports proudly supports environmental sustainability through the Ozone Friendly Pure Ceylon Tea certification. It ensures that no ozone-depleting substances are used in the production and packaging processes.",
+    "image": "/images/certifications/ozone-friendly.png",
+    "category": "Environmental Sustainability"
+  },
+  {
+    "id": "gmp",
+    "title": "Good Manufacturing Practice (GMP)",
+    "issuer": "Sri Lanka Export Development Board",
+    "year": 2023,
+    "description": "Mist & Ember Exports complies with internationally recognized GMP standards, ensuring that every stage of tea processing and packaging follows strict hygiene and safety controls to deliver premium quality products.",
+    "image": "/images/certifications/gmp.png",
+    "category": "Manufacturing Standards"
+  },
+  {
+    "id": "iso-22000",
+    "title": "ISO 22000:2018 – Food Safety Management",
+    "issuer": "International Organization for Standardization (ISO)",
+    "year": 2023,
+    "description": "This certification demonstrates that Mist & Ember Exports follows a robust and internationally recognized food safety management system, guaranteeing safe, traceable, and high-quality tea for global markets.",
+    "image": "/images/certifications/iso-22000.png",
+    "category": "Food Safety"
+  },
+  {
+    "id": "haccp",
+    "title": "HACCP Certified – Hazard Analysis & Critical Control Points",
+    "issuer": "Sri Lanka Standards Institution (SLSI)",
+    "year": 2023,
+    "description": "HACCP certification confirms that Mist & Ember Exports identifies and controls all potential food safety hazards at every step of the tea production process, ensuring maximum product safety and consistency.",
+    "image": "/images/certifications/haccp.png",
+    "category": "Quality Assurance"
+  }
+]

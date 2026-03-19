@@ -1,0 +1,62 @@
+[
+  {
+    "id": "export-markets",
+    "title": "Global Export Markets",
+    "value": 42,
+    "unit": "countries",
+    "icon": "Globe2",
+    "change": 8.5,
+    "subtext": "across 5 continents",
+    "description": "Mist & Ember Exports exports premium Sri Lankan tea to over 40 countries worldwide, building strong partnerships across Europe, Asia, and the Middle East."
+  },
+  {
+    "id": "production-capacity",
+    "title": "Annual Production Capacity",
+    "value": 2500,
+    "unit": "metric tons",
+    "icon": "Factory",
+    "change": 12.4,
+    "subtext": "vs last year",
+    "description": "Our facilities are equipped to produce over 2,500 metric tons of tea annually, maintaining consistency, quality, and timely delivery for global clients."
+  },
+  {
+    "id": "tea-experts",
+    "title": "Experienced Tea Experts",
+    "value": 35,
+    "unit": "professionals",
+    "icon": "Users",
+    "change": 5.0,
+    "subtext": "certified blenders & tasters",
+    "description": "Mist & Ember Exports’ expert blenders and tasters bring decades of experience, ensuring each batch of tea reflects Sri Lanka’s authentic aroma and taste."
+  },
+  {
+    "id": "certifications",
+    "title": "International Certifications",
+    "value": 5,
+    "unit": "standards",
+    "icon": "Award",
+    "change": 0,
+    "subtext": "Lion Logo, ISO, HACCP, GMP & Ozone Friendly",
+    "description": "Certified for excellence — we uphold the highest standards in safety, authenticity, and environmental responsibility."
+  },
+  {
+    "id": "sustainability",
+    "title": "Sustainability Programs",
+    "value": 12,
+    "unit": "active projects",
+    "icon": "Leaf",
+    "change": 15.2,
+    "subtext": "community & eco initiatives",
+    "description": "From reforestation and renewable packaging to fair-trade initiatives, Mist & Ember Exports continues to invest in sustainable growth and local empowerment."
+  },
+  {
+    "id": "customer-satisfaction",
+    "title": "Customer Satisfaction Rate",
+    "value": 98.7,
+    "unit": "%",
+    "icon": "Smile",
+    "change": 2.1,
+    "subtext": "based on partner feedback",
+    "description": "Global distributors and private-label clients consistently rate our quality and reliability among the highest in the tea export industry."
+  }
+]

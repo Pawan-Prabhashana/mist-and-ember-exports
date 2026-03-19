@@ -1,0 +1,90 @@
+# -----------------------------------------------------
+# 🌿 Ceylon Roots — Editor Configuration
+# -----------------------------------------------------
+# Purpose:
+#   Enforce consistent code style and formatting across editors.
+#   Works with VS Code, WebStorm, Sublime Text, etc.
+# -----------------------------------------------------
+
+# top-most EditorConfig file
+root = true
+
+# -----------------------------------------------------
+# Global defaults
+# -----------------------------------------------------
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Match common file naming conventions
+max_line_length = 100
+tab_width = 2
+
+# -----------------------------------------------------
+# Markdown & Documentation
+# -----------------------------------------------------
+[*.md]
+trim_trailing_whitespace = false
+insert_final_newline = true
+indent_size = 2
+
+# -----------------------------------------------------
+# JSON / YAML / TOML
+# -----------------------------------------------------
+[*.{json,yml,yaml,toml}]
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+quote_type = double
+
+# -----------------------------------------------------
+# TypeScript / JavaScript / JSX / TSX
+# -----------------------------------------------------
+[*.{js,jsx,ts,tsx,mjs,cjs}]
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 100
+
+# -----------------------------------------------------
+# CSS / SCSS / PostCSS
+# -----------------------------------------------------
+[*.{css,scss,pcss}]
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# -----------------------------------------------------
+# HTML / XML
+# -----------------------------------------------------
+[*.{html,xml}]
+indent_size = 2
+insert_final_newline = true
+
+# -----------------------------------------------------
+# Shell Scripts & Configs
+# -----------------------------------------------------
+[*.{sh,bash,zsh}]
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# -----------------------------------------------------
+# Ignore minified or build outputs
+# -----------------------------------------------------
+[*.min.{js,css}]
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+# -----------------------------------------------------
+# License and text files
+# -----------------------------------------------------
+[*.{txt,license,env}]
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true

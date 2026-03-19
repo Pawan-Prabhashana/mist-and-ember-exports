@@ -1,0 +1,191 @@
+/* ----------------------------------------------------
+   🌿 Ceylon Roots — Prose Styles
+   ----------------------------------------------------
+   Purpose:
+   - Style markdown and rich text content
+   - Match Ceylon Roots brand (earthy greens, soft neutrals)
+   - Support dark mode, responsive text, and image handling
+   ---------------------------------------------------- */
+
+/* Tailwind Typography base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------------------------------
+   Custom Typography (extends Tailwind's .prose)
+---------------------------------------------------- */
+
+.prose {
+  @apply max-w-none text-base leading-relaxed text-[var(--color-text)] font-sans;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply font-serif font-semibold text-[var(--color-heading)] mb-4 mt-8;
+  letter-spacing: -0.02em;
+}
+
+.prose h1 {
+  @apply text-4xl md:text-5xl;
+  line-height: 1.2;
+}
+
+.prose h2 {
+  @apply text-3xl md:text-4xl;
+  line-height: 1.25;
+}
+
+.prose h3 {
+  @apply text-2xl md:text-3xl;
+}
+
+.prose p {
+  @apply text-[1.05rem] text-[var(--color-text)] mb-5;
+}
+
+.prose a {
+  @apply text-[var(--color-accent)] font-medium underline underline-offset-2 transition-colors;
+}
+.prose a:hover {
+  color: #2e6748;
+}
+
+.prose strong {
+  @apply font-semibold text-[var(--color-heading)];
+}
+
+.prose em {
+  @apply italic;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-[var(--color-accent)] pl-4 italic text-[var(--color-heading)] bg-[var(--color-bg-alt)] rounded-md;
+}
+
+.prose ul,
+.prose ol {
+  @apply my-4 ml-6 space-y-2;
+}
+.prose li {
+  @apply leading-relaxed;
+}
+
+.prose img {
+  @apply rounded-xl shadow-md my-6;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose figure {
+  @apply my-8;
+}
+.prose figcaption {
+  @apply text-sm text-gray-500 mt-2 text-center;
+}
+
+.prose pre {
+  @apply bg-[#f6f6f6] dark:bg-[#1c1c1c] text-[0.9rem] p-4 rounded-lg overflow-x-auto;
+  font-family: var(--font-mono);
+}
+
+.prose code {
+  @apply bg-[rgba(0,0,0,0.05)] dark:bg-[rgba(255,255,255,0.08)] px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+.prose hr {
+  @apply border-t border-[var(--color-border)] my-10;
+}
+
+.prose table {
+  @apply w-full border-collapse text-left my-6;
+}
+
+.prose th,
+.prose td {
+  @apply border border-[var(--color-border)] px-4 py-2;
+}
+
+.prose th {
+  @apply bg-[var(--color-bg-alt)] font-semibold;
+}
+
+.prose caption {
+  @apply text-sm text-gray-500 mt-2 text-center;
+}
+
+/* ----------------------------------------------------
+   Lists & Details
+---------------------------------------------------- */
+
+.prose ul li::marker {
+  color: var(--color-accent);
+}
+.prose ol li::marker {
+  color: var(--color-accent);
+}
+
+.prose details {
+  @apply my-4 p-4 border border-[var(--color-border)] rounded-lg bg-[var(--color-bg-alt)];
+}
+.prose summary {
+  @apply font-semibold cursor-pointer text-[var(--color-heading)];
+}
+
+/* ----------------------------------------------------
+   Callouts / Info Boxes
+---------------------------------------------------- */
+
+.prose .info {
+  @apply border-l-4 border-[var(--color-accent)] bg-[var(--color-bg-alt)] px-4 py-3 my-6 rounded;
+}
+.prose .warning {
+  @apply border-l-4 border-yellow-500 bg-yellow-50 px-4 py-3 my-6 rounded text-yellow-900;
+}
+.prose .success {
+  @apply border-l-4 border-green-600 bg-green-50 px-4 py-3 my-6 rounded text-green-800;
+}
+
+/* ----------------------------------------------------
+   Dark Mode Adjustments
+---------------------------------------------------- */
+
+.dark .prose {
+  @apply text-[var(--color-text)];
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4 {
+  @apply text-[var(--color-heading)];
+}
+
+.dark .prose blockquote {
+  @apply border-l-[var(--color-accent)] bg-[rgba(255,255,255,0.05)];
+}
+
+.dark .prose pre,
+.dark .prose code {
+  @apply bg-[rgba(255,255,255,0.06)];
+}
+
+.dark .prose a:hover {
+  color: #8ed19a;
+}
+
+/* ----------------------------------------------------
+   Utility for center-aligned images/text
+---------------------------------------------------- */
+
+.prose-center {
+  @apply prose text-center mx-auto;
+}
+
+.prose-center img {
+  @apply mx-auto;
+}
