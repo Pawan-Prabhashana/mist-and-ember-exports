@@ -12,7 +12,7 @@ const ALLOWED_MIME = new Set([
 ]);
 
 const CONTACT_TO =
-  process.env.CONTACT_TO?.trim() || "hello@mistandember.com";
+  process.env.CONTACT_TO?.trim() || "hello@mistandemberexports.com";
 const CONTACT_FROM =
   process.env.CONTACT_FROM?.trim() || "Mist & Ember Exports <no-reply@mistandember.com>";
 const RESEND_API_KEY = process.env.RESEND_API_KEY?.trim();

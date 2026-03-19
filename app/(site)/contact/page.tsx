@@ -308,7 +308,7 @@ export default function ContactPage() {
                 </button>
 
                 <a
-                  href="https://wa.me/94700000000"
+                  href="https://wa.me/94718159949"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#083335] px-5 py-3 text-[#083335] transition hover:bg-[#083335] hover:text-white"
@@ -377,9 +377,6 @@ export default function ContactPage() {
                   />
                 ))}
               </div>
-              <p className="mt-3 text-xs text-[#4B5A56]">
-                We try PNG → SVG → a neutral inline badge, so the page never breaks even if files are missing.
-              </p>
             </div>
           </aside>
         </div>

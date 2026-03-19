@@ -211,6 +211,17 @@ button {
   transform: scale(1.03);
 }
 
+/* Global Reach map - flowing particles along routes */
+@keyframes flowParticle {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -64;
+  }
+}
+
+
 /* ----------------------------------------------------
    Utility & Branding
 ---------------------------------------------------- */

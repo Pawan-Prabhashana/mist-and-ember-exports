@@ -137,15 +137,20 @@ export default function HomePage() {
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #083335 1px, transparent 0)", backgroundSize: "28px 28px" }} />
         <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-12 lg:px-20 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
           <ScrollReveal>
-            <div className="relative h-80 md:h-[480px] w-full overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(8,51,53,0.08)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/factory/facility-exterior.jpg?v=2"
-              alt="Galpadithanne tea factory (KDU)"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-            />
-            </div>
+            <figure>
+              <div className="relative h-80 md:h-[480px] w-full overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(8,51,53,0.08)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/factory/facility-exterior.jpg?v=2"
+                alt="Galpadithanne tea factory (KDU)"
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="eager"
+              />
+              </div>
+              <figcaption className="mt-2 text-sm text-[#4B5A56] italic">
+                Galpadithanne tea factory (KDU)
+              </figcaption>
+            </figure>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
             <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-wide text-[#083335]">

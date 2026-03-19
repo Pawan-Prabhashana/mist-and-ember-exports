@@ -79,14 +79,19 @@ export default function AboutPage() {
       {/* Heritage Section */}
       <section className="px-6 md:px-16 py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/factory/facility-exterior.jpg?v=2"
-            alt="Galpadithanne tea factory (KDU)"
-            width={800}
-            height={600}
-            className="rounded-2xl shadow-lg w-full h-auto object-cover"
-          />
+          <figure>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/factory/facility-exterior.jpg?v=2"
+              alt="Galpadithanne tea factory (KDU)"
+              width={800}
+              height={600}
+              className="rounded-2xl shadow-lg w-full h-auto object-cover"
+            />
+            <figcaption className="mt-2 text-sm text-[#4B5A56] italic">
+              Galpadithanne tea factory (KDU)
+            </figcaption>
+          </figure>
         </div>
 
         <div>
