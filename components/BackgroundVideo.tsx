@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Hero background video. Primary: hero-leaves.mp4. Fallback: cinnamon-closeup.webm.
- * Safari-compatible: explicit muted/playsInline in JS, play() on canplay, user-gesture fallback.
+ * Hero background video. Starts playing as soon as any data is available.
+ * Safari-compatible: muted/playsInline required for autoplay.
  */
 export default function BackgroundVideo() {
   const ref = useRef<HTMLVideoElement>(null);
@@ -21,9 +21,11 @@ export default function BackgroundVideo() {
 
     tryPlay();
 
-    const onCanPlay = () => tryPlay();
-    v.addEventListener("loadeddata", onCanPlay, { once: true });
-    v.addEventListener("canplay", onCanPlay, { once: true });
+    // Start as soon as first frame is available (faster than canplay)
+    const onData = () => tryPlay();
+    v.addEventListener("loadeddata", onData, { once: true });
+    v.addEventListener("canplay", onData, { once: true });
+    v.addEventListener("canplaythrough", onData, { once: true });
 
     const resume = () => {
       tryPlay();
@@ -36,8 +38,9 @@ export default function BackgroundVideo() {
     window.addEventListener("keydown", resume, { once: true });
 
     return () => {
-      v.removeEventListener("loadeddata", onCanPlay);
-      v.removeEventListener("canplay", onCanPlay);
+      v.removeEventListener("loadeddata", onData);
+      v.removeEventListener("canplay", onData);
+      v.removeEventListener("canplaythrough", onData);
     };
   }, []);
 
@@ -55,6 +58,8 @@ export default function BackgroundVideo() {
       style={{ objectFit: "cover" }}
       controls={false}
       disablePictureInPicture
+      // @ts-expect-error fetchPriority is valid for faster loading
+      fetchPriority="high"
     >
       <source src="/video/hero-leaves.mp4" type="video/mp4" />
       <source src="/video/cinnamon-closeup.webm" type="video/webm" />
