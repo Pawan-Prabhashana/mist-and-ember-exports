@@ -30,6 +30,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   trailingSlash: false,
+  transpilePackages: ["next-mdx-remote"],
   // output: "standalone", // disabled - causes ENOENT in some envs
 
   i18n: {
