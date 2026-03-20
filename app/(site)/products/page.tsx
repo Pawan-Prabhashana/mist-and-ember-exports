@@ -1,335 +1,193 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import fs from "node:fs";
-import path from "node:path";
 
 export const metadata: Metadata = {
   title: "Our Products — Mist & Ember Exports",
   description:
-    "Explore premium Ceylon tea, cinnamon, coconut, and other authentic products from Sri Lanka. Export-grade quality, sustainable sourcing, and global logistics.",
+    "Explore premium Ceylon tea, cinnamon, frozen fruits, and other authentic products from Sri Lanka. Export-grade quality, sustainable sourcing, and global logistics.",
 };
 
-type Product = {
-  slug: string;
-  title: string;
-  category: "tea" | "cinnamon" | "coconut" | "others" | string;
-  heroImage?: string;
-  gallery?: string[];
-  origin?: string;
-  grades?: string[];
-  specifications?: Array<{ label: string; value: string }>;
-  packagingOptions?: string[];
-  moq?: string;
-  capacity?: string;
-  description?: string;
-  certifications?: string[];
-  downloadableSpec?: string;
+type ProductCard = {
+  name: string;
+  gradeType: string;
+  spec: string;
+  img: string;
 };
 
-type ProductDB = { items: Product[] };
+const SECTIONS: { title: string; intro: string; products: ProductCard[] }[] = [
+  {
+    title: "Ceylon Tea",
+    intro: "Premium Sri Lankan tea — orthodox, green, and white — sourced from highland estates and prepared for global export.",
+    products: [
+      {
+        name: "Orthodox Black Tea",
+        gradeType: "OP / BOP / BOPF",
+        spec: "Classic Sri Lankan export tea with bright liquor and strong aroma.",
+        img: "/images/products/tea/tea-1.jpg",
+      },
+      {
+        name: "Ceylon Green Tea",
+        gradeType: "Gunpowder / Sencha Style",
+        spec: "Fresh, clean cup profile prepared for retail and bulk export.",
+        img: "/images/products/tea/tea-2.jpg",
+      },
+      {
+        name: "Ceylon White Tea",
+        gradeType: "Silver Tips / Golden Tips",
+        spec: "Premium specialty tea with delicate leaf appearance and refined character.",
+        img: "/images/products/tea/tea-3.jpg",
+      },
+    ],
+  },
+  {
+    title: "Ceylon Cinnamon",
+    intro: "True Ceylon cinnamon quills — from premium Alba to commercial grades — for food manufacturing and retail export.",
+    products: [
+      {
+        name: "Ceylon Cinnamon Quills",
+        gradeType: "Alba",
+        spec: "Finest premium quill grade for high-end export markets.",
+        img: "/images/products/cinnamon/cinnamon-1.jpg",
+      },
+      {
+        name: "Ceylon Cinnamon Quills",
+        gradeType: "C5 Special / C5",
+        spec: "Popular export grade with clean appearance and balanced flavor.",
+        img: "/images/products/cinnamon/cinnamon-2.jpg",
+      },
+      {
+        name: "Ceylon Cinnamon Quills",
+        gradeType: "M5 / H1",
+        spec: "Commercial export grades suitable for bulk orders and food manufacturing.",
+        img: "/images/products/cinnamon/cinnamon-3.jpg",
+      },
+    ],
+  },
+  {
+    title: "Frozen Fruits",
+    intro: "Tropical fruits processed for export — chunks, pulp, and puree — with consistent quality for beverage and food applications.",
+    products: [
+      {
+        name: "Frozen Pineapple",
+        gradeType: "Chunks / Pulp",
+        spec: "Tropical fruit processed for export with bright flavor and consistent quality.",
+        img: "/images/products/others/frozen-1.jpg",
+      },
+      {
+        name: "Frozen Passion Fruit",
+        gradeType: "Pulp / Puree",
+        spec: "High-aroma tropical fruit prepared for beverage and food applications.",
+        img: "/images/products/others/frozen-2.jpg",
+      },
+      {
+        name: "Frozen Papaya or Soursop",
+        gradeType: "Pulp / Cubes",
+        spec: "Value-added tropical fruit line suitable for retail and bulk export supply.",
+        img: "/images/products/others/frozen-3.jpg",
+      },
+    ],
+  },
+];
 
-const DATA_PATH = path.join(process.cwd(), "data", "products.json");
-const PAGE_SIZE = 12;
-
-/* -------------------- Data helpers -------------------- */
-function readDB(): ProductDB {
-  if (!fs.existsSync(DATA_PATH)) return { items: [] };
-  try {
-    const raw = fs.readFileSync(DATA_PATH, "utf8");
-    const json = JSON.parse(raw);
-    if (json && Array.isArray(json.items)) return json as ProductDB;
-  } catch {
-    // ignore
-  }
-  return { items: [] };
-}
-
-function getAllProducts(): Product[] {
-  return readDB().items;
-}
-
-/* -------------------- Utilities -------------------- */
-function uniq<T>(arr: T[]): T[] {
-  return Array.from(new Set(arr));
-}
-
-function formatCategoryLabel(cat: string) {
-  return cat.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function filterProducts(items: Product[], q?: string, category?: string) {
-  let res = items;
-
-  if (category) {
-    const t = category.toLowerCase();
-    res = res.filter((p) => (p.category || "").toLowerCase() === t);
-  }
-
-  if (q) {
-    const needle = q.toLowerCase();
-    res = res.filter((p) => {
-      const hay = [
-        p.slug,
-        p.title,
-        p.category,
-        p.description,
-        (p.grades || []).join(" "),
-        (p.packagingOptions || []).join(" "),
-        (p.certifications || []).join(" "),
-        p.origin,
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-      return hay.includes(needle);
-    });
-  }
-
-  return res;
-}
-
-function paginate<T>(arr: T[], page: number, pageSize: number) {
-  const total = arr.length;
-  const pages = Math.max(1, Math.ceil(total / pageSize));
-  const clamped = Math.min(Math.max(1, page), pages);
-  const start = (clamped - 1) * pageSize;
-  const end = start + pageSize;
-  return { page: clamped, pages, total, slice: arr.slice(start, end) };
-}
-
-/* -------------------- Page -------------------- */
-export default function ProductsIndexPage({
-  searchParams,
-}: {
-  searchParams?: { q?: string; category?: string; page?: string };
-}) {
-  const q = (searchParams?.q || "").trim() || undefined;
-  const category = (searchParams?.category || "").trim() || undefined;
-  const page = Number(searchParams?.page || "1") || 1;
-
-  const all = getAllProducts();
-
-  const categories = uniq(
-    all.map((p) => (p.category || "others").toLowerCase())
-  ).sort((a, b) => a.localeCompare(b));
-
-  const filtered = filterProducts(all, q, category);
-  const { slice, pages, page: current, total } = paginate(
-    filtered,
-    page,
-    PAGE_SIZE
+function ProductCard({ product }: { product: ProductCard }) {
+  return (
+    <article className="group overflow-hidden rounded-2xl border border-[#E7E3DE] bg-white shadow-[0_8px_30px_rgba(8,51,53,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(8,51,53,0.1)] hover:border-[#C4A36A]/40">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F6F3EE]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={product.img}
+          alt={product.name}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      </div>
+      <div className="p-5">
+        <h3 className="font-serif text-lg font-semibold text-[#083335]">
+          {product.name}
+        </h3>
+        <p className="mt-1 text-sm font-medium text-[#C4A36A]">
+          {product.gradeType}
+        </p>
+        <p className="mt-2 text-sm text-[#4B5A56] leading-relaxed">
+          {product.spec}
+        </p>
+      </div>
+    </article>
   );
+}
 
+export default function ProductsPage() {
   return (
     <main className="min-h-screen bg-[#F6F3EE] text-[#083335]">
-      {/* Header & Filters */}
-      <section className="border-b border-[#E7E3DE]">
+      {/* Header */}
+      <section className="border-b border-[#E7E3DE] bg-white">
         <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-20 py-14 md:py-20">
-          <h1 className="font-serif text-4xl md:text-5xl font-semibold">Our Products</h1>
-          <p className="mt-3 text-[#4B5A56] max-w-3xl">
-            Tea, cinnamon, coconut, and more — responsibly sourced, expertly processed, and
-            exported worldwide.
-          </p>
-
-          <form className="mt-8 grid gap-4 md:grid-cols-[minmax(0,1fr)_220px_auto]">
-            <input
-              name="q"
-              defaultValue={q}
-              placeholder="Search products, grades, certifications…"
-              className="rounded-xl border border-[#E7E3DE] bg-white px-4 py-3 outline-none transition focus:border-[#C4A36A] focus:shadow-sm"
-            />
-            <select
-              name="category"
-              defaultValue={category || ""}
-              className="rounded-xl border border-[#E7E3DE] bg-white px-4 py-3 outline-none transition focus:border-[#C4A36A] focus:shadow-sm"
-            >
-              <option value="">All categories</option>
-              {categories.map((c) => (
-                <option key={c} value={c}>
-                  {formatCategoryLabel(c)}
-                </option>
-              ))}
-            </select>
-            <button
-              type="submit"
-              className="rounded-xl bg-[#083335] px-5 py-3 text-white transition hover:opacity-95"
-            >
-              Apply
-            </button>
-          </form>
-
-          <p className="mt-3 text-sm text-[#4B5A56]">
-            Showing <span className="font-medium">{slice.length}</span> of{" "}
-            <span className="font-medium">{total}</span> products
-            {q ? (
-              <>
-                {" "}
-                for “<span className="font-medium">{q}</span>”
-              </>
-            ) : null}
-            {category ? (
-              <>
-                {" "}
-                in category “
-                <span className="font-medium">
-                  {formatCategoryLabel(category)}
-                </span>
-                ”
-              </>
-            ) : null}
-            .
+          <h1 className="font-serif text-4xl md:text-5xl font-semibold">
+            Our Products
+          </h1>
+          <div className="mt-4 h-px w-16 bg-[#C4A36A]/60" />
+          <p className="mt-4 text-[#4B5A56] max-w-2xl">
+            Ceylon tea, cinnamon, and frozen fruits — responsibly sourced,
+            expertly processed, and exported worldwide.
           </p>
         </div>
       </section>
 
-      {/* Grid */}
-      <section className="px-6 md:px-12 lg:px-20 py-10 md:py-16">
-        {slice.length === 0 ? (
-          <div className="mx-auto max-w-6xl">
-            <div className="rounded-2xl border border-[#E7E3DE] bg-white p-8 text-center shadow-sm">
-              <p className="text-[#4B5A56]">
-                No products found. Try clearing filters or searching another term.
+      {/* Product Sections */}
+      {SECTIONS.map((section, sectionIdx) => (
+        <section
+          key={section.title}
+          className={
+            sectionIdx % 2 === 0
+              ? "bg-[#F6F3EE]"
+              : "bg-white border-y border-[#E7E3DE]/60"
+          }
+        >
+          <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-20 py-14 md:py-20">
+            <div className="mb-10">
+              <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-wide text-[#083335]">
+                {section.title}
+              </h2>
+              <div className="mt-2 h-px w-12 bg-[#C4A36A]/50" />
+              <p className="mt-4 text-[#4B5A56] max-w-2xl">
+                {section.intro}
               </p>
-              <div className="mt-4">
-                <Link
-                  href="/products"
-                  className="inline-flex items-center gap-2 rounded-xl border border-[#083335] px-4 py-2 text-[#083335] transition hover:bg-[#083335] hover:text-white"
-                >
-                  Reset filters
-                </Link>
-              </div>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {section.products.map((product) => (
+                <ProductCard key={`${section.title}-${product.gradeType}`} product={product} />
+              ))}
             </div>
           </div>
-        ) : (
-          <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {slice.map((p) => {
-              const cover =
-                p.heroImage ||
-                (p.gallery && p.gallery[0]) ||
-                "/images/hero/hero-tea-3840x2160.jpg";
-              const grades = p.grades?.slice(0, 3) || [];
+        </section>
+      ))}
 
-              return (
-                <article
-                  key={p.slug}
-                  className="group overflow-hidden rounded-2xl border border-[#E7E3DE] bg-white shadow-sm transition hover:shadow-md"
-                >
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <Image
-                      src={cover}
-                      alt={p.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                    />
-                  </div>
-
-                  <div className="p-5">
-                    <p className="text-xs uppercase tracking-widest text-[#4B5A56]">
-                      {formatCategoryLabel(p.category)}
-                    </p>
-                    <h2 className="mt-1 line-clamp-2 font-serif text-xl font-semibold">
-                      {p.title}
-                    </h2>
-
-                    {/* Grades preview */}
-                    {grades.length > 0 && (
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {grades.map((g) => (
-                          <span
-                            key={g}
-                            className="rounded-full border border-[#E7E3DE] bg-white px-3 py-1 text-xs"
-                          >
-                            {g}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="mt-4 flex items-center gap-2">
-                      <Link
-                        href={`/products/${p.slug}`}
-                        className="inline-flex items-center gap-2 rounded-xl border border-[#083335] px-4 py-2 text-[#083335] transition hover:bg-[#083335] hover:text-white"
-                      >
-                        View details →
-                      </Link>
-                      <Link
-                        href={`/contact?product=${encodeURIComponent(p.title)}`}
-                        className="inline-flex items-center gap-2 rounded-xl bg-[#083335] px-4 py-2 text-white transition hover:opacity-95"
-                      >
-                        Request a quote
-                      </Link>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+      {/* CTA */}
+      <section className="border-t border-[#E7E3DE] bg-[#083335] text-[#F6F3EE]">
+        <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-20 py-14 md:py-20 text-center">
+          <h2 className="font-serif text-2xl md:text-3xl font-semibold">
+            Bulk Orders & Export Inquiries
+          </h2>
+          <p className="mt-4 text-[#E7E3DE]/90 max-w-xl mx-auto">
+            Ready to source premium Ceylon products? Contact us for MOQs,
+            specifications, and delivery terms.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#C4A36A] px-6 py-3 font-medium text-[#083335] transition hover:bg-[#C4A36A]/90 hover:opacity-95"
+            >
+              Request a Quote
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-[#F6F3EE] px-6 py-3 font-medium text-[#F6F3EE] transition hover:bg-[#F6F3EE] hover:text-[#083335]"
+            >
+              Get in Touch
+            </Link>
           </div>
-        )}
-
-        {/* Pagination */}
-        {pages > 1 && (
-          <div className="mx-auto mt-10 flex max-w-6xl items-center justify-between">
-            <PaginationControls current={current} pages={pages} {...(q != null && { q })} {...(category != null && { category })} />
-          </div>
-        )}
+        </div>
       </section>
     </main>
-  );
-}
-
-/* -------------------- Pagination Controls -------------------- */
-function PaginationControls({
-  current,
-  pages,
-  q,
-  category,
-}: {
-  current: number;
-  pages: number;
-  q?: string;
-  category?: string;
-}) {
-  const mk = (p: number) =>
-    `/products?${[
-      `page=${p}`,
-      q ? `q=${encodeURIComponent(q)}` : "",
-      category ? `category=${encodeURIComponent(category)}` : "",
-    ]
-      .filter(Boolean)
-      .join("&")}`;
-
-  return (
-    <nav className="flex items-center gap-2" role="navigation" aria-label="Pagination">
-      <Link
-        aria-disabled={current <= 1}
-        href={current > 1 ? mk(current - 1) : mk(1)}
-        className={`rounded-xl border px-3 py-2 ${
-          current <= 1
-            ? "pointer-events-none border-[#E7E3DE] text-[#9AA6A2]"
-            : "border-[#083335] text-[#083335] hover:bg-[#083335] hover:text-white"
-        }`}
-      >
-        ← Prev
-      </Link>
-
-      <span className="text-sm text-[#4B5A56]">
-        Page <span className="font-medium">{current}</span> of{" "}
-        <span className="font-medium">{pages}</span>
-      </span>
-
-      <Link
-        aria-disabled={current >= pages}
-        href={current < pages ? mk(current + 1) : mk(pages)}
-        className={`rounded-xl border px-3 py-2 ${
-          current >= pages
-            ? "pointer-events-none border-[#E7E3DE] text-[#9AA6A2]"
-            : "border-[#083335] text-[#083335] hover:bg-[#083335] hover:text-white"
-        }`}
-      >
-        Next →
-      </Link>
-    </nav>
   );
 }
