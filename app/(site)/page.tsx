@@ -99,11 +99,12 @@ export default function HomePage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { name: "Ceylon Tea", img: "/images/products/tea/tea-cta-hero.jpg", href: "/ceylon-tea" },
               { name: "Ceylon Cinnamon", img: "/images/products/cinnamon/cinnamon-quills.jpg", href: "/products?category=cinnamon" },
               { name: "Coconut Products", img: "/images/products/coconut/coconut-virgin-oil.jpg", href: "/products?category=coconut" },
+              { name: "Frozen Fruits", img: "/images/products/others/frozen-fruits.jpg", href: "/products?category=others" },
             ].map((p, i) => (
               <ScrollReveal key={p.name} delay={i * 0.1}>
                 <Link
